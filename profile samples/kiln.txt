@@ -1,0 +1,69 @@
+Controleo3 Profile  // This must be the first item in the file
+
+// Please provide feedback on this profile, or others you create for curing etc.  Send an
+// email to admin@whizoo.com.
+// This profile doesn't use PID to reach temperatures in a specific amount of time but
+// rather sets a duty cycle and lets it run for a fixed duration.  It might be better
+// to use the "ramp temperature" command instead - but that means PID tuning needs to be
+// somewhat accurate.
+// 
+// Seriously, please provide feedback!  Reach out for help and lets figutre this out together.
+
+// Notes:
+// 1. Comment lines can start with # or //
+// 2. Comments can start after a token (e.g. Door close 1s // Close the oven door in 1 second)
+// 3. Tokens are case-insensitive
+// 4. End of line character can be CR or LF (or both, in any order)
+// 5. Number delimiters can be any non-digit character (30/40/50 = 30,40,50 = 30 40 50)
+// 6. When reading in profile files, Arduino's Serial Monitor will show debugging information
+
+
+// The name of this profile
+Name "Kiln Bisque 1000~C"
+Title "Firing"
+
+Show graph to 1200C for 65000 seconds
+Graph divider at 1000C
+
+// The deviation (in Celsius) above which to abort
+Deviation to abort 50C
+Maximum temperature 1100C
+
+// The maximum duty cycle of any element (bottom/top/boost).  Always enforced over any
+// other command
+Maximum duty 100/100/100
+
+// Start the timer and graphing
+Start timer
+Start plotting 0
+
+
+// Start the bisque firing
+Display "Phase: Low Heat"
+// Use a 20% duty cycle for 2 hours
+Element duty cycle 20/20/20
+Wait for 7200
+
+// Use a medium heat for 2 hours
+Display "Phase: Medium Heat"
+// Use a 40% duty cycle
+Element duty cycle 40/40/40
+Wait for 7200
+
+// Use a high heat until temperature is reached
+Display "Phase: High Heat"
+// Use a 100% duty cycle
+Element duty cycle 100/100/100
+Wait until above 1000C
+
+// Start the cool-down
+Display "Phase: Cooling"
+Element duty cycle 0/0/0
+Wait until below 50C
+
+// Pottery can be removed now
+Display "Firing complete!"
+// Play a tune that the firing is done
+Play tune
+
+Close door over 3 seconds
