@@ -38,7 +38,10 @@ The "learning cycle" is pretty cool and works very well.  I was able then to imm
 
 I used the adhesive temperature strips that came with the build kit to check for cold spots.  I put five home-etched PCBs in the oven (in an X configuration), each with a temperature strip to monitor the peak temperature reached.  The stock 225C reflow curve showed the center of the oven to be perfect, the back of the over to be 9C too cool, and the front to be 15C too cool.  There was no left-right variation, which was very helpful.
 
-With more Type E temperature strips (somewhat hard to find - try https://www.tiptemp.com/Products/Eight-Temperature-Labels/TLCSEN033-Temperature-Label-8-Level-Strip-E.html )  I was able to get the front of the oven up to 225C, while the center and back of the oven reached 232C - not too bad.  This required changing the duty cycle of the extra (third) heating element to 75% and changing the peak temperature of the reflow
+With more Type E temperature strips (somewhat hard to find - try https://www.tiptemp.com/Products/Eight-Temperature-Labels/TLCSEN033-Temperature-Label-8-Level-Strip-E.html )  I was able to get the front of the oven up to 225C, while the center and back of the oven reached 232C - not too bad.  This required three changes:
+* Changed the duty cycle of the extra (third) heating element to 75%.  This might be a bit of a risk, but it seemed to work and nothing is overheating.
+* Changed the heating element biasing from 100/75/60 (bottom/top/extra) to 100/60/80.  This should give more heat to the front of the oven (where the extra heating element was installed).  Cutting back on the bottom element didn't help, but cutting back on the top heating element did.  Note:  These are *proportional* values, not *absolute* values.  So something like 80/80/80 is the same as 100/100/100 or 10/10/10.  Increasing the value for the extra heating element, gave it a boost, but so did decreasing the value for the top heating element.
+* Changed the peak temperature of the reflow
 profile from 225C to 230C.  The intermediate temperatures where changed
 proportionally (assuming no bias at 20C), so140C, 165C, 220C, and 225C were
 changed to 143C, 169C, 225C, and 230C.  The hope is that everything stays below the liquidus temperature until the reflow portion of the profile begins.
