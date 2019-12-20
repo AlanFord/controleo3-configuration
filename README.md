@@ -43,7 +43,7 @@ With more Type E temperature strips (somewhat hard to find - try https://www.tip
 * Changed the heating element biasing from 100/75/60 (bottom/top/extra) to 100/60/80.  This should give more heat to the front of the oven (where the extra heating element was installed).  Cutting back on the bottom element didn't help, but cutting back on the top heating element did.  Note:  These are *proportional* values, not *absolute* values.  So something like 80/80/80 is the same as 100/100/100 or 10/10/10.  Increasing the value for the extra heating element, gave it a boost, but so did decreasing the value for the top heating element.
 * Changed the peak temperature of the reflow
 profile from 225C to 230C.  The intermediate temperatures where changed
-proportionally (assuming no bias at 20C), so140C, 165C, 220C, and 225C were
+proportionally (assuming no bias at 20C), so 140C, 165C, 220C, and 225C were
 changed to 143C, 169C, 225C, and 230C.  The hope is that everything stays below the liquidus temperature until the reflow portion of the profile begins.
 
 Finally, I compared the temperatures reached with a home-etched singled-sided
